@@ -1,0 +1,21 @@
+@model IEnumerable<Web.Entities.Models.CatPic>
+
+@{
+    ViewData["Title"] = "Cat Pic Folder";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<div class="card-group">
+@foreach (var item in Model) {
+          <div class="card">
+            <img class="card-img-top" src="./images/@item.Pic.ToString()">
+            <div class="card-body">
+              <p class="card-text"><b>Uploaded on:</b> @item.UploadedDate.ToString() </p>
+            </div>
+          </div>
+}
+</div>

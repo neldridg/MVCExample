@@ -1,0 +1,44 @@
+@model Web.Models.CatPicViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>CatPic</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">  
+                    <div class="custom-file">  
+                        <input asp-for="Pic" class="custom-file-input" type="file">  
+                        <label asp-for="Pic" class="custom-file-label"></label>   
+                    </div>  
+                    <span asp-validation-for="Pic" class="text-danger"></span>  
+                </div> 
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">   
+        $(".custom-file-input").on("change", function () {  
+            var fileName = $(this).val().split("\\").pop();  
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);  
+        });  
+        </script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        
+    }
+}
